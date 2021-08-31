@@ -1,8 +1,12 @@
 import React from "react";
 
-// Custom
+// Custom components
 import RedirectButton from "../dev_elements/RedirectButton";
 import BottomFixedButton from "../elements/BottomFixedButton";
+import EventList from "../elements/EventList";
+
+// Dev components
+import EventPanel from "../dev_elements/EventPanel";
 
 // Material UI
 import AddIcon from "@material-ui/icons/Add";
@@ -21,6 +25,10 @@ function Calendar() {
 			<BottomFixedButton icon={<AddIcon />} onClick={handleBottomButtonClick}>
 				Event
 			</BottomFixedButton>
+			<EventList />
+
+			{/* Dev component */}
+			<EventPanel position={"bottomLeft"} />
 		</div>
 	);
 }

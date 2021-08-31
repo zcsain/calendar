@@ -4,6 +4,9 @@ import { useHistory } from "react-router-dom";
 // Custom components
 import LoginCard from "../elements/LoginCard";
 
+// Dev components
+import EventPanel from "../dev_elements/EventPanel";
+
 // Helper functions
 import dateToISO from "../../helpers/dateToISO";
 
@@ -11,13 +14,16 @@ import dateToISO from "../../helpers/dateToISO";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 
+// Misc
+import GAPI_CLIENT_CONFIG from "../../api/gapiClientConfig";
+
 const useStyles = makeStyles((theme) => ({
 	// Center items in container vertically and horizontally
 	container: {
 		display: "flex",
 		width: "100vw",
 		height: "100vh",
-		justifContent: "center",
+		// justifyContent: "center",
 		alignItems: "center",
 	},
 }));
@@ -27,24 +33,11 @@ function Login() {
 	const history = useHistory();
 	var gapi = window.gapi;
 
-	// Hide keys/ids in .env so they can be ignored when pushing to GitHub
-	// Keys/ids should be on server side code, not client side code.
-	// "REACT_APP_" prefix required for React detect variables in .env files
-	const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
-	const API_KEY = process.env.REACT_APP_API_KEY;
-
-	// Array of API discovery doc URLs for APIs
-	var DISCOVERY_DOCS = [
-		"https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest",
-	];
-
-	// Authorization scopes required by the API; multiple scopes can be
-	// included, separated by spaces.
-	var SCOPES =
-		"https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/calendar";
-
 	const date1 = new Date("August 31, 2021 15:00:00");
 	const date2 = new Date("August 31, 2021 16:00:00");
+	const nowObj = Date.now();
+	const nowDate = dateToISO(new Date(nowObj));
+	const weekLaterDate = dateToISO(new Date(nowObj + 7 * 24 * 60 * 60 * 1000));
 
 	var event = {
 		summary: "Origin Test Event",
@@ -67,17 +60,29 @@ function Login() {
 		},
 	};
 
+	const handleLogin = () => {
+		gapi.load("client:auth2", () => {
+			console.log("Loaded client");
+
+			// Initialize Google API client
+			gapi.client.init(GAPI_CLIENT_CONFIG);
+
+			// Load the google calendar
+			gapi.client.load("calendar", "v3", () =>
+				console.log("Loaded calendar v3")
+			);
+
+			// Sign in the user
+			gapi.auth2.getAuthInstance().signIn();
+		});
+	};
+
 	const handleClick = () => {
 		gapi.load("client:auth2", () => {
 			console.log("Loaded client");
 
 			// Initialize Google API client
-			gapi.client.init({
-				apiKey: API_KEY,
-				clientId: CLIENT_ID,
-				discoveryDocs: DISCOVERY_DOCS,
-				scope: SCOPES,
-			});
+			gapi.client.init(GAPI_CLIENT_CONFIG);
 
 			gapi.client.load("calendar", "v3", () =>
 				console.log("Loaded calendar v3")
@@ -88,15 +93,10 @@ function Login() {
 				.signIn()
 				.then(() => {
 					// Add event to calendar
-					addEvent(event);
+					// addEvent(event);
 
 					// Get events from calendar
-					// const nowObj = Date.now();
-					// const nowDate = dateToISO(new Date(nowObj));
-					// const weekLaterDate = dateToISO(
-					// 	new Date(nowObj + 7 * 24 * 60 * 60 * 1000)
-					// );
-					// getEvent(nowDate, weekLaterDate);
+					getEvent(nowDate, weekLaterDate);
 				});
 		});
 	};
@@ -119,17 +119,33 @@ function Login() {
 		gapi.client.calendar.events
 			.list({
 				calendarId: "primary",
-				// timeMin: new Date().toISOString(),
 				timeMin: startDate,
 				timeMax: endDate,
 				showDeleted: false,
 				singleEvents: true,
-				// maxResults: 10,
 				orderBy: "startTime",
 			})
 			.then((response) => {
 				const events = response.result.items;
 				console.log("EVENTS: ", events);
+			});
+	};
+
+	// Get 30 days worth of events
+	const list30Days = () => {
+		console.log("30 Days");
+	};
+
+	const deleteEvent = (eventId) => {
+		gapi.client.calendar.events
+			.delete({
+				calendarId: "primary",
+				eventId: eventId,
+				sendUpdates: "all",
+			})
+			.then((response) => {
+				console.log(response);
+				console.log("Event deleted");
 			});
 	};
 
@@ -140,6 +156,10 @@ function Login() {
 				title={"Sign in"}
 				buttonText={"Sign in with google"}
 				onButtonClick={handleClick}
+			/>
+			<EventPanel
+				onCreate={() => addEvent(event)}
+				onList7={() => getEvent(nowDate, weekLaterDate)}
 			/>
 		</Container>
 	);
