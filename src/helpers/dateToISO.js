@@ -5,10 +5,14 @@
  */
 
 const dateToISO = (date) => {
-	if (date instanceof Date) {
-		return date.toISOString();
-	} else {
-		throw "Date is not an instance of 'Date'";
+	try {
+		if (date instanceof Date) {
+			return date.toISOString();
+		} else {
+			throw new Error("date is not an instance of 'Date'");
+		}
+	} catch (error) {
+		console.log(error.name, error.message);
 	}
 };
 
