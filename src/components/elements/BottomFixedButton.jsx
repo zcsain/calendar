@@ -25,12 +25,12 @@ const useStyles = makeStyles((theme) => ({
 // Renders a button with and icon, that is fixed to the bottom of the window,
 // left or right fixed positoin can be chosen.
 
-function BottomFixedButton({ icon, children, onClick, position }) {
+function BottomFixedButton({ icon, children, onClick, position, color }) {
 	const classes = useStyles();
 
 	return (
 		<div className={position === "left" ? classes.rootLeft : classes.rootRight}>
-			<Fab variant="extended" color="primary" onClick={onClick}>
+			<Fab variant="extended" color={color} onClick={onClick}>
 				<span className={classes.extendedIcon}>{icon}</span>
 				{children}
 			</Fab>
@@ -40,10 +40,12 @@ function BottomFixedButton({ icon, children, onClick, position }) {
 
 BottomFixedButton.propTypes = {
 	position: PropTypes.string,
+	color: PropTypes.string,
 };
 
 BottomFixedButton.defaultProps = {
 	position: "right",
+	color: "primary",
 };
 
 export default BottomFixedButton;
