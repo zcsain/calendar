@@ -6,25 +6,40 @@ import Event from "./Event";
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
+import Typography from "@material-ui/core/Typography";
+import Card from "@material-ui/core/Card";
 
-// Misc
-import eventList from "../../mockdata/eventList";
+// Helpers
+import dayOfTheWeek from "../../helpers/dayOfTheWeek";
+import shortDate from "../../helpers/shortDate";
 
 const useStyles = makeStyles((theme) => ({
-	demo: {
+	card: {
 		backgroundColor: theme.palette.background.paper,
+		borderRadius: theme.spacing(1),
+	},
+	list: {
+		overflow: "auto",
+		maxHeight: 410,
+	},
+	day: {
+		padding: theme.spacing(1, 2, 1),
+		backgroundColor: theme.palette.primary.main,
+		color: "white",
 	},
 }));
 
-function EventList() {
+function EventList({ events }) {
 	const classes = useStyles();
-
-	// Dev var!
-	const events = eventList;
+	const day = dayOfTheWeek(events[0].start.dateTime);
+	const date = shortDate(events[0].start.dateTime);
 
 	return (
-		<div className={classes.demo}>
-			<List dense>
+		<Card className={classes.card} raised>
+			<Typography variant="h6" className={classes.day}>
+				{day + " - " + date}
+			</Typography>
+			<List className={classes.list} dense>
 				{events.map((event) => {
 					const { id, summary, start, end } = event;
 					const { dateTime: startDateISO } = start;
@@ -41,7 +56,7 @@ function EventList() {
 					);
 				})}
 			</List>
-		</div>
+		</Card>
 	);
 }
 

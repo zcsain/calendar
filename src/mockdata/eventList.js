@@ -1,86 +1,15 @@
 const eventList = [
 	{
 		kind: "calendar#event",
-		etag: '"3260690700056000"',
-		id: "5bmund4h51jrilgcapnkejfoko",
-		status: "confirmed",
-		htmlLink:
-			"https://www.google.com/calendar/event?eid=NWJtdW5kNGg1MWpyaWxnY2FwbmtlamZva28gemNzYWluQG0",
-		created: "2021-08-30T17:42:29.000Z",
-		updated: "2021-08-30T17:42:30.078Z",
-		summary: "Origin Test Event",
-		creator: {
-			email: "zcsain@gmail.com",
-			self: true,
-		},
-		organizer: {
-			email: "zcsain@gmail.com",
-			self: true,
-		},
-		start: {
-			dateTime: "2021-08-31T15:00:00+02:00",
-		},
-		end: {
-			dateTime: "2021-08-31T16:00:00+02:00",
-		},
-		iCalUID: "5bmund4h51jrilgcapnkejfoko@google.com",
-		sequence: 0,
-		reminders: {
-			useDefault: false,
-			overrides: [
-				{
-					method: "popup",
-					minutes: 10,
-				},
-				{
-					method: "email",
-					minutes: 1440,
-				},
-			],
-		},
-		eventType: "default",
-	},
-	{
-		kind: "calendar#event",
-		etag: '"3260676414260000"',
-		id: "1rp0hk6efo1ekrtvb5bcsshbav",
-		status: "confirmed",
-		htmlLink:
-			"https://www.google.com/calendar/event?eid=MXJwMGhrNmVmbzFla3J0dmI1YmNzc2hiYXYgemNzYWluQG0",
-		created: "2021-08-30T15:42:24.000Z",
-		updated: "2021-08-30T15:43:27.130Z",
-		summary: "Test Event TUE",
-		creator: {
-			email: "zcsain@gmail.com",
-			self: true,
-		},
-		organizer: {
-			email: "zcsain@gmail.com",
-			self: true,
-		},
-		start: {
-			dateTime: "2021-08-31T18:00:00+02:00",
-		},
-		end: {
-			dateTime: "2021-08-31T19:00:00+02:00",
-		},
-		iCalUID: "1rp0hk6efo1ekrtvb5bcsshbav@google.com",
-		sequence: 0,
-		reminders: {
-			useDefault: true,
-		},
-		eventType: "default",
-	},
-	{
-		kind: "calendar#event",
-		etag: '"3260687977864000"',
+		etag: '"3260819024314000"',
 		id: "7tmr1m1dkena5qnq7aogklktfa",
 		status: "confirmed",
 		htmlLink:
 			"https://www.google.com/calendar/event?eid=N3RtcjFtMWRrZW5hNXFucTdhb2drbGt0ZmEgemNzYWluQG0",
 		created: "2021-08-30T15:42:44.000Z",
-		updated: "2021-08-30T17:19:48.932Z",
+		updated: "2021-08-31T11:31:52.157Z",
 		summary: "Test Event WED",
+		colorId: "10",
 		creator: {
 			email: "zcsain@gmail.com",
 			self: true,
@@ -104,14 +33,15 @@ const eventList = [
 	},
 	{
 		kind: "calendar#event",
-		etag: '"3260676394612000"',
+		etag: '"3260819041622000"',
 		id: "4v3mm18qsmt42f02ijajaolbvk",
 		status: "confirmed",
 		htmlLink:
 			"https://www.google.com/calendar/event?eid=NHYzbW0xOHFzbXQ0MmYwMmlqYWphb2xidmsgemNzYWluQG0",
 		created: "2021-08-30T15:43:17.000Z",
-		updated: "2021-08-30T15:43:17.306Z",
+		updated: "2021-08-31T11:32:00.811Z",
 		summary: "Test Event THU",
+		colorId: "11",
 		creator: {
 			email: "zcsain@gmail.com",
 			self: true,
@@ -166,6 +96,141 @@ const eventList = [
 	},
 	{
 		kind: "calendar#event",
+		etag: '"3260999909466000"',
+		id: "3gjp73rbeu33qo7vvbh9khmb9a",
+		status: "confirmed",
+		htmlLink:
+			"https://www.google.com/calendar/event?eid=M2dqcDczcmJldTMzcW83dnZiaDlraG1iOWEgemNzYWluQG0",
+		created: "2021-09-01T12:39:01.000Z",
+		updated: "2021-09-01T12:39:14.759Z",
+		summary: "E4",
+		creator: {
+			email: "zcsain@gmail.com",
+			self: true,
+		},
+		organizer: {
+			email: "zcsain@gmail.com",
+			self: true,
+		},
+		start: {
+			dateTime: "2021-09-04T10:00:00+02:00",
+		},
+		end: {
+			dateTime: "2021-09-04T10:30:00+02:00",
+		},
+		transparency: "transparent",
+		iCalUID: "3gjp73rbeu33qo7vvbh9khmb9a@google.com",
+		sequence: 1,
+		reminders: {
+			useDefault: false,
+			overrides: [
+				{
+					method: "email",
+					minutes: 30,
+				},
+				{
+					method: "popup",
+					minutes: 30,
+				},
+			],
+		},
+		eventType: "default",
+	},
+	{
+		kind: "calendar#event",
+		etag: '"3260986578474000"',
+		id: "7g5t875r9j7infotn8vsb7gh01",
+		status: "confirmed",
+		htmlLink:
+			"https://www.google.com/calendar/event?eid=N2c1dDg3NXI5ajdpbmZvdG44dnNiN2doMDEgemNzYWluQG0",
+		created: "2021-09-01T10:48:09.000Z",
+		updated: "2021-09-01T10:48:09.237Z",
+		summary: "Test event SAT2",
+		creator: {
+			email: "zcsain@gmail.com",
+			self: true,
+		},
+		organizer: {
+			email: "zcsain@gmail.com",
+			self: true,
+		},
+		start: {
+			dateTime: "2021-09-04T13:00:00+02:00",
+		},
+		end: {
+			dateTime: "2021-09-04T14:00:00+02:00",
+		},
+		iCalUID: "7g5t875r9j7infotn8vsb7gh01@google.com",
+		sequence: 0,
+		reminders: {
+			useDefault: true,
+		},
+		eventType: "default",
+	},
+	{
+		kind: "calendar#event",
+		etag: '"3260999823608000"',
+		id: "67hqmpref4goaao14bupicdrnt",
+		status: "confirmed",
+		htmlLink:
+			"https://www.google.com/calendar/event?eid=NjdocW1wcmVmNGdvYWFvMTRidXBpY2RybnQgemNzYWluQG0",
+		created: "2021-09-01T12:38:31.000Z",
+		updated: "2021-09-01T12:38:31.804Z",
+		summary: "E1",
+		creator: {
+			email: "zcsain@gmail.com",
+			self: true,
+		},
+		organizer: {
+			email: "zcsain@gmail.com",
+			self: true,
+		},
+		start: {
+			dateTime: "2021-09-04T16:15:00+02:00",
+		},
+		end: {
+			dateTime: "2021-09-04T17:15:00+02:00",
+		},
+		iCalUID: "67hqmpref4goaao14bupicdrnt@google.com",
+		sequence: 0,
+		reminders: {
+			useDefault: true,
+		},
+		eventType: "default",
+	},
+	{
+		kind: "calendar#event",
+		etag: '"3260999841902000"',
+		id: "5gur33akvpep6nktpqqr7aj3c2",
+		status: "confirmed",
+		htmlLink:
+			"https://www.google.com/calendar/event?eid=NWd1cjMzYWt2cGVwNm5rdHBxcXI3YWozYzIgemNzYWluQG0",
+		created: "2021-09-01T12:38:40.000Z",
+		updated: "2021-09-01T12:38:40.951Z",
+		summary: "E2",
+		creator: {
+			email: "zcsain@gmail.com",
+			self: true,
+		},
+		organizer: {
+			email: "zcsain@gmail.com",
+			self: true,
+		},
+		start: {
+			dateTime: "2021-09-04T18:45:00+02:00",
+		},
+		end: {
+			dateTime: "2021-09-04T19:45:00+02:00",
+		},
+		iCalUID: "5gur33akvpep6nktpqqr7aj3c2@google.com",
+		sequence: 0,
+		reminders: {
+			useDefault: true,
+		},
+		eventType: "default",
+	},
+	{
+		kind: "calendar#event",
 		etag: '"3260688033476000"',
 		id: "4o8lkdrmq19guctu407pcgntji",
 		status: "confirmed",
@@ -189,6 +254,37 @@ const eventList = [
 			dateTime: "2021-09-04T20:30:00+02:00",
 		},
 		iCalUID: "4o8lkdrmq19guctu407pcgntji@google.com",
+		sequence: 0,
+		reminders: {
+			useDefault: true,
+		},
+		eventType: "default",
+	},
+	{
+		kind: "calendar#event",
+		etag: '"3260999865272000"',
+		id: "6jjq7hnhjpjp802o9k7mu4un50",
+		status: "confirmed",
+		htmlLink:
+			"https://www.google.com/calendar/event?eid=NmpqcTdobmhqcGpwODAybzlrN211NHVuNTAgemNzYWluQG0",
+		created: "2021-09-01T12:38:52.000Z",
+		updated: "2021-09-01T12:38:52.636Z",
+		summary: "E3",
+		creator: {
+			email: "zcsain@gmail.com",
+			self: true,
+		},
+		organizer: {
+			email: "zcsain@gmail.com",
+			self: true,
+		},
+		start: {
+			dateTime: "2021-09-04T21:00:00+02:00",
+		},
+		end: {
+			dateTime: "2021-09-04T22:00:00+02:00",
+		},
+		iCalUID: "6jjq7hnhjpjp802o9k7mu4un50@google.com",
 		sequence: 0,
 		reminders: {
 			useDefault: true,
