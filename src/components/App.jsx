@@ -1,6 +1,9 @@
 import React from "react";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
 
+// Api
+import gapiClientInitialization from "../api/gapiClientInitialization";
+
 // Custom
 import Calendar from "./pages/Calendar";
 import Login from "./pages/Login";
@@ -37,27 +40,28 @@ const lightTheme = createTheme({
 	},
 });
 
-class App extends React.Component {
-	render() {
-		return (
-			<MuiThemeProvider theme={lightTheme}>
-				<CssBaseline>
-					<Router history={history}>
-						<Switch>
-							<Route path="/" exact>
-								<Login />
-							</Route>
-							<Route path="/calendar" exact>
-								<Calendar />
-							</Route>
-							{/* Redirect all not existing routes back to roote route */}
-							<Redirect from="/" to="/" />
-						</Switch>
-					</Router>
-				</CssBaseline>
-			</MuiThemeProvider>
-		);
-	}
+function App() {
+	// Initialize Google API client and load calendar
+	gapiClientInitialization();
+
+	return (
+		<MuiThemeProvider theme={lightTheme}>
+			<CssBaseline>
+				<Router history={history}>
+					<Switch>
+						<Route path="/" exact>
+							<Login />
+						</Route>
+						<Route path="/calendar" exact>
+							<Calendar />
+						</Route>
+						{/* Redirect all not existing routes back to roote route */}
+						<Redirect from="/" to="/" />
+					</Switch>
+				</Router>
+			</CssBaseline>
+		</MuiThemeProvider>
+	);
 }
 
 export default App;
