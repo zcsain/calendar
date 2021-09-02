@@ -3,9 +3,7 @@ import { DateTime } from "luxon";
 
 // Custom
 import BottomFixedButton from "./BottomFixedButton";
-
-// Helpers
-import dateToISO from "../../helpers/dateToISO";
+import gapiAddEvent from "../../api/gapiAddEvent";
 
 // Material UI
 import Button from "@material-ui/core/Button";
@@ -13,41 +11,60 @@ import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import AddIcon from "@material-ui/icons/Add";
 import Grid from "@material-ui/core/Grid";
 import {
 	MuiPickersUtilsProvider,
-	KeyboardTimePicker,
-	KeyboardDatePicker,
-	DateTimePicker,
 	KeyboardDateTimePicker,
 } from "@material-ui/pickers";
 import LuxonUtils from "@date-io/luxon";
 
-function AddEventDialog() {
+function AddEventDialog({ resetState }) {
 	const [open, setOpen] = useState(false);
-	const [startDate, setStartDate] = useState(new Date());
-	const [endDate, setEndDate] = useState(new Date());
+	const [startDate, setStartDate] = useState(DateTime.now());
+	const [endDate, setEndDate] = useState(DateTime.now().plus({ hours: 1 }));
+	const [title, setTitle] = useState("");
 
 	const handleStartDateChange = (date) => {
 		setStartDate(date);
-		console.log(dateToISO(startDate));
 	};
 
 	const handleEndDateChange = (date) => {
 		setEndDate(date);
 	};
 
-	const handleClickOpen = () => {
-		setOpen(true);
+	const handleTitleChange = (event) => {
+		setTitle(event.target.value);
 	};
 
+	// Open dialog
+	const handleClickOpen = () => {
+		setOpen(true);
+
+		// Initialize time to current time, title to empty string
+		setStartDate(DateTime.now());
+		setEndDate(DateTime.now().plus({ hours: 1 }));
+		setTitle("");
+	};
+
+	// Close dialog
 	const handleClose = () => {
 		setOpen(false);
 	};
 
+	// Add event
+	const handleSubmit = () => {
+		gapiAddEvent(title, startDate, endDate);
+
+		handleClose();
+
+		if (resetState) {
+			resetState();
+		}
+	};
+
+	// Title input and start/end time pickers
 	const displayPickers = () => {
 		return (
 			<MuiPickersUtilsProvider utils={LuxonUtils}>
@@ -58,7 +75,8 @@ function AddEventDialog() {
 							margin="dense"
 							id="name"
 							label="Event Title"
-							type="text"
+							value={title}
+							onChange={handleTitleChange}
 							fullWidth
 						/>
 					</Grid>
@@ -68,7 +86,6 @@ function AddEventDialog() {
 							label="Event Start"
 							value={startDate}
 							onChange={handleStartDateChange}
-							onError={console.log}
 							disablePast
 							format="dd/MM/yyyy HH:mm"
 						/>
@@ -79,7 +96,6 @@ function AddEventDialog() {
 							label="Event End"
 							value={endDate}
 							onChange={handleEndDateChange}
-							onError={console.log}
 							disablePast
 							format="dd/MM/yyyy HH:mm"
 						/>
@@ -93,7 +109,7 @@ function AddEventDialog() {
 		<div>
 			<BottomFixedButton
 				icon={<AddIcon />}
-				color="secondary"
+				color="primary"
 				onClick={handleClickOpen}
 			>
 				Event
@@ -103,23 +119,13 @@ function AddEventDialog() {
 				onClose={handleClose}
 				aria-labelledby="form-dialog-title"
 			>
-				<DialogTitle id="form-dialog-title">Add New Event</DialogTitle>
-				<DialogContent>
-					{/* <TextField
-						autoFocus
-						margin="dense"
-						id="name"
-						label="Title"
-						type="text"
-						fullWidth
-					/> */}
-					{displayPickers()}
-				</DialogContent>
+				<DialogTitle id="form-dialog-title">New Event</DialogTitle>
+				<DialogContent>{displayPickers()}</DialogContent>
 				<DialogActions>
 					<Button onClick={handleClose} color="primary">
 						Cancel
 					</Button>
-					<Button onClick={handleClose} color="primary">
+					<Button onClick={handleSubmit} color="primary">
 						Add
 					</Button>
 				</DialogActions>
