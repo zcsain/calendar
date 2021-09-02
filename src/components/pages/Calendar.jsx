@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router";
 
 // Custom components
 import EventList from "../elements/EventList";
@@ -21,8 +22,18 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-function Calendar() {
+function Calendar({ signInStatus }) {
 	const classes = useStyles();
+	const history = useHistory();
+	const [count, setCount] = useState();
+
+	useEffect(() => {
+		if (signInStatus) {
+			// Load data according to count
+		} else {
+			history.push("/");
+		}
+	});
 
 	return (
 		<div>
@@ -52,8 +63,6 @@ function Calendar() {
 				</Grid>
 			</Container>
 			<AddEventDialog />
-			{/* Dev component */}
-			<EventPanel position={"topLeft"} />
 		</div>
 	);
 }

@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
 
 // Api
 import gapiClientInitialization from "../api/gapiClientInitialization";
+import gapiCheckSignInStatus from "../api/gapiCheckSignInStatus";
 
-// Custom
+// Custom components
 import Calendar from "./pages/Calendar";
 import SignIn from "./pages/SignIn";
 import history from "../history";
+
+// Dev components
+import EventPanel from "./dev_elements/EventPanel";
 
 // Material UI
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -41,8 +45,16 @@ const lightTheme = createTheme({
 });
 
 function App() {
-	// Initialize Google API client and load calendar
-	gapiClientInitialization();
+	const [signInStatus, setSignInStatus] = useState(false);
+
+	useEffect(() => {
+		// Initialize Google API client and load calendar
+		gapiClientInitialization(handleSignInStatus);
+	}, []);
+
+	const handleSignInStatus = () => {
+		setSignInStatus(gapiCheckSignInStatus());
+	};
 
 	return (
 		<MuiThemeProvider theme={lightTheme}>
@@ -50,15 +62,17 @@ function App() {
 				<Router history={history}>
 					<Switch>
 						<Route path="/" exact>
-							<SignIn />
+							<SignIn onSignInChange={handleSignInStatus} />
 						</Route>
 						<Route path="/calendar" exact>
-							<Calendar />
+							<Calendar signInStatus={signInStatus} />
 						</Route>
 						{/* Redirect all not existing routes back to roote route */}
 						<Redirect from="/" to="/" />
 					</Switch>
 				</Router>
+				{/* Dev component */}
+				<EventPanel onSignInChange={handleSignInStatus} position={"topLeft"} />
 			</CssBaseline>
 		</MuiThemeProvider>
 	);

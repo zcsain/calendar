@@ -9,6 +9,9 @@ import RedirectButton from "./RedirectButton";
 // Helpers
 import dateToISO from "../../helpers/dateToISO";
 
+// Api
+import gapiSignOut from "../../api/gapiSignOut";
+
 // Material UI
 import Card from "@material-ui/core/Card";
 import { makeStyles } from "@material-ui/core/styles";
@@ -51,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-function EventPanel({ onCreate, onDelete, onList30, onList1, position }) {
+function EventPanel({ onCreate, onDelete, onList1, position, onSignInChange }) {
 	const classes = useStyles();
 	const gapi = window.gapi;
 
@@ -89,7 +92,8 @@ function EventPanel({ onCreate, onDelete, onList30, onList1, position }) {
 
 	// Sign out
 	const handleSignOut = () => {
-		gapi.auth2.getAuthInstance().signOut();
+		// gapi.auth2.getAuthInstance().signOut();
+		gapiSignOut(onSignInChange);
 	};
 
 	return (

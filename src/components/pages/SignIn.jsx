@@ -3,15 +3,13 @@ import React from "react";
 // Custom components
 import SignInCard from "../elements/SignInCard";
 
-// Dev components
-import EventPanel from "../dev_elements/EventPanel";
-
 // Material UI
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 
 // Api
 import gapiSignIn from "../../api/gapiSignIn";
+import gapiSignInV2 from "../../api/gapiSignInV2";
 
 const useStyles = makeStyles((theme) => ({
 	// Center items in container vertically and horizontally
@@ -19,16 +17,16 @@ const useStyles = makeStyles((theme) => ({
 		display: "flex",
 		width: "100vw",
 		height: "100vh",
-		// justifyContent: "center",
 		alignItems: "center",
 	},
 }));
 
-function SignIn() {
+function SignIn({ onSignInChange }) {
 	const classes = useStyles();
 
 	const handleSignIn = () => {
-		gapiSignIn();
+		// gapiSignIn();
+		gapiSignInV2(onSignInChange);
 	};
 
 	return (
@@ -39,7 +37,6 @@ function SignIn() {
 				buttonText={"Sign in with google"}
 				onButtonClick={handleSignIn}
 			/>
-			<EventPanel />
 		</Container>
 	);
 }
