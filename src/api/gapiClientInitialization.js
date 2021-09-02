@@ -1,6 +1,6 @@
 import GAPI_CLIENT_CONFIG from "./gapiClientConfig";
 
-const gapiClientInitialization = () => {
+const gapiClientInitialization = ({ handleSetState }) => {
 	const gapi = window.gapi;
 
 	// Load auth2 client
