@@ -87,6 +87,11 @@ function EventPanel({ onCreate, onDelete, onList30, onList1, position }) {
 			});
 	};
 
+	// Sign out
+	const handleSignOut = () => {
+		gapi.auth2.getAuthInstance().signOut();
+	};
+
 	return (
 		<Card className={cardStyle} raised>
 			<Button
@@ -112,6 +117,7 @@ function EventPanel({ onCreate, onDelete, onList30, onList1, position }) {
 				className={classes.button}
 				variant="contained"
 				color="primary"
+				disabled={onCreate ? false : true}
 				fullWidth
 				onClick={onCreate}
 			>
@@ -144,6 +150,15 @@ function EventPanel({ onCreate, onDelete, onList30, onList1, position }) {
 				onClick={onList1}
 			>
 				List event (1)
+			</Button>
+			<Button
+				className={classes.button}
+				variant="contained"
+				color="primary"
+				fullWidth
+				onClick={handleSignOut}
+			>
+				Sign out
 			</Button>
 			<RedirectButton url={"/calendar"}>
 				Redirect to Calendar Page
