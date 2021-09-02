@@ -68,9 +68,6 @@ function LoginCard({ title, description, buttonText, onButtonClick }) {
 			>
 				{buttonText}
 			</Button>
-			<RedirectButton url={"/calendar"}>
-				Redirect to Calendar Page
-			</RedirectButton>
 		</Card>
 	);
 }
