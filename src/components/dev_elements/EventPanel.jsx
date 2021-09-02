@@ -1,6 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 import PropTypes from "prop-types";
+import { DateTime } from "luxon";
 
 // Custom components
 import RedirectButton from "./RedirectButton";
@@ -63,14 +64,11 @@ function EventPanel({ onCreate, onDelete, onList30, onList1, position }) {
 	});
 
 	// 7 day time frame
-	const nowObj = Date.now();
-	const nowDate = dateToISO(new Date(nowObj));
-	const weekLaterDate = dateToISO(new Date(nowObj + 7 * 24 * 60 * 60 * 1000));
+	const nowDate = dateToISO(DateTime.now());
+	const weekLaterDate = dateToISO(DateTime.now().plus({ days: 7 }));
 
 	// 30 day time frame
-	const days30LaterDate = dateToISO(
-		new Date(nowObj + 30 * 24 * 60 * 60 * 1000)
-	);
+	const days30LaterDate = dateToISO(DateTime.now().plus({ days: 30 }));
 
 	// Get Events from calendar
 	const getEventList = (startDate, endDate) => {

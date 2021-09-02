@@ -1,5 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import { DateTime } from "luxon";
 
 // Custom components
 import LoginCard from "../elements/LoginCard";
@@ -14,8 +15,9 @@ import dateToISO from "../../helpers/dateToISO";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 
-// Misc
+// Api
 import GAPI_CLIENT_CONFIG from "../../api/gapiClientConfig";
+import gapiClientInitialization from "../../api/gapiClientInitialization";
 
 const useStyles = makeStyles((theme) => ({
 	// Center items in container vertically and horizontally
@@ -33,23 +35,18 @@ function Login() {
 	const history = useHistory();
 	var gapi = window.gapi;
 
-	const date1 = new Date("August 31, 2021 15:00:00");
-	const date2 = new Date("August 31, 2021 16:00:00");
-	const nowObj = Date.now();
-	const nowDate = dateToISO(new Date(nowObj));
-	const weekLaterDate = dateToISO(new Date(nowObj + 7 * 24 * 60 * 60 * 1000));
+	const date1 = DateTime.now();
+	const date2 = DateTime.now().plus({ hours: 7 });
+	const nowDate = dateToISO(DateTime.now());
+	const weekLaterDate = dateToISO(DateTime.now().plus({ days: 7 }));
 
 	var event = {
 		summary: "Origin Test Event",
 		start: {
 			dateTime: dateToISO(date1),
-			// dateTime: "2015-05-28T09:00:00-07:00",
-			// timeZone: "America/Los_Angeles",
 		},
 		end: {
 			dateTime: dateToISO(date2),
-			// dateTime: "2015-05-28T17:00:00-07:00",
-			// timeZone: "America/Los_Angeles",
 		},
 		reminders: {
 			useDefault: false,
@@ -118,7 +115,8 @@ function Login() {
 	const getEvent = (startDate, endDate) => {
 		gapi.client.calendar.events
 			.list({
-				calendarId: "primary",
+				// calendarId: "primary",
+				calendarId: "en.croatian#holiday@group.v.calendar.google.com",
 				timeMin: startDate,
 				timeMax: endDate,
 				showDeleted: false,
@@ -129,11 +127,6 @@ function Login() {
 				const events = response.result.items;
 				console.log("EVENTS: ", events);
 			});
-	};
-
-	// Get 30 days worth of events
-	const list30Days = () => {
-		console.log("30 Days");
 	};
 
 	const deleteEvent = (eventId) => {
