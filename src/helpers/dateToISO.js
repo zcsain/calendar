@@ -1,3 +1,5 @@
+import { DateTime } from "luxon";
+
 /**
  *
  * @param {Date} date Date time object
@@ -6,8 +8,8 @@
 
 const dateToISO = (date) => {
 	try {
-		if (date instanceof Date) {
-			return date.toISOString();
+		if (DateTime.isDateTime(date)) {
+			return date.toISO();
 		} else {
 			throw new Error("date is not an instance of 'Date'");
 		}
