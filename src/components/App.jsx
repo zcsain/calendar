@@ -50,7 +50,7 @@ function App() {
 				<Router history={history}>
 					<Switch>
 						<Route path="/" exact>
-							<Login />
+							<SignIn />
 						</Route>
 						<Route path="/calendar" exact>
 							<Calendar />

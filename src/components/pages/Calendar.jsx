@@ -1,7 +1,6 @@
 import React from "react";
 
 // Custom components
-import BottomFixedButton from "../elements/BottomFixedButton";
 import EventList from "../elements/EventList";
 import AddEventDialog from "../elements/AddEventDialog";
 
@@ -9,7 +8,6 @@ import AddEventDialog from "../elements/AddEventDialog";
 import EventPanel from "../dev_elements/EventPanel";
 
 // Material UI
-import AddIcon from "@material-ui/icons/Add";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
@@ -26,15 +24,8 @@ const useStyles = makeStyles((theme) => ({
 function Calendar() {
 	const classes = useStyles();
 
-	const handleBottomButtonClick = () => {
-		window.alert("BottomFixedButton from Calendar!");
-	};
-
 	return (
 		<div>
-			<BottomFixedButton icon={<AddIcon />} onClick={handleBottomButtonClick}>
-				Event
-			</BottomFixedButton>
 			<Container className={classes.container}>
 				<Grid container spacing={3} justifyContent="center">
 					<Grid item xs={12} sm={6} md={4} lg={3}>

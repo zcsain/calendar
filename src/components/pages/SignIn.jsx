@@ -1,9 +1,7 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
-import { DateTime } from "luxon";
 
 // Custom components
-import LoginCard from "../elements/LoginCard";
+import SignInCard from "../elements/SignInCard";
 
 // Dev components
 import EventPanel from "../dev_elements/EventPanel";
@@ -35,7 +33,7 @@ function SignIn() {
 
 	return (
 		<Container className={classes.container} maxWidth="xs">
-			<LoginCard
+			<SignInCard
 				description="To access your calendar sign in using your Google account"
 				title={"Sign in"}
 				buttonText={"Sign in with google"}

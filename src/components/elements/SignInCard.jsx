@@ -1,8 +1,5 @@
 import React from "react";
 
-// Custom
-import RedirectButton from "../dev_elements/RedirectButton";
-
 // Material UI
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
