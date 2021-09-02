@@ -6,7 +6,7 @@ import gapiClientInitialization from "../api/gapiClientInitialization";
 
 // Custom
 import Calendar from "./pages/Calendar";
-import Login from "./pages/Login";
+import SignIn from "./pages/SignIn";
 import history from "../history";
 
 // Material UI
