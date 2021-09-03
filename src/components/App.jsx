@@ -47,14 +47,14 @@ const lightTheme = createTheme({
 function App() {
 	const [signInStatus, setSignInStatus] = useState(false);
 
+	const handleSignInStatus = () => {
+		setSignInStatus(gapiCheckSignInStatus());
+	};
+
 	useEffect(() => {
 		// Initialize Google API client and load calendar
 		gapiClientInitialization(handleSignInStatus);
 	}, []);
-
-	const handleSignInStatus = () => {
-		setSignInStatus(gapiCheckSignInStatus());
-	};
 
 	return (
 		<MuiThemeProvider theme={lightTheme}>
@@ -70,9 +70,12 @@ function App() {
 						{/* Redirect all not existing routes back to roote route */}
 						<Redirect from="/" to="/" />
 					</Switch>
+					{/* Dev component */}
+					<EventPanel
+						onSignInChange={handleSignInStatus}
+						position={"topLeft"}
+					/>
 				</Router>
-				{/* Dev component */}
-				<EventPanel onSignInChange={handleSignInStatus} position={"topLeft"} />
 			</CssBaseline>
 		</MuiThemeProvider>
 	);

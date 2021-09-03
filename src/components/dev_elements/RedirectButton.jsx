@@ -15,7 +15,11 @@ const useStyles = makeStyles((theme) => ({
 
 function RedirectButton({ url, children }) {
 	const classes = useStyles();
-	const history = useHistory();
+	let history = useHistory();
+
+	const handleHistory = (url) => {
+		history.push(url);
+	};
 
 	return (
 		<Button
@@ -23,9 +27,7 @@ function RedirectButton({ url, children }) {
 			variant="contained"
 			color="secondary"
 			fullWidth
-			onClick={() => {
-				history.push(url);
-			}}
+			onClick={() => handleHistory(url)}
 		>
 			{children}
 		</Button>

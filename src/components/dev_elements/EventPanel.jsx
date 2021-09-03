@@ -8,6 +8,10 @@ import RedirectButton from "./RedirectButton";
 
 // Helpers
 import dateToISO from "../../helpers/dateToISO";
+import startOfDayISO from "../../helpers/startOfDayISO";
+import endOfDayISO from "../../helpers/endOfDayISO";
+import weekdayFromISO from "../../helpers/weekdayFromISO";
+import weekNumberFromISO from "../../helpers/weekNumberFromISO";
 
 // Api
 import gapiSignOut from "../../api/gapiSignOut";
@@ -167,6 +171,12 @@ function EventPanel({ onCreate, onDelete, onList1, position, onSignInChange }) {
 			<RedirectButton url={"/calendar"}>
 				Redirect to Calendar Page
 			</RedirectButton>
+			<div>
+				<p>Start of day: {startOfDayISO()}</p>
+				<p>End of day: {endOfDayISO()}</p>
+				<p>Weekday: {weekdayFromISO(DateTime.now())}</p>
+				<p>Week number: {weekNumberFromISO(DateTime.now())}</p>
+			</div>
 			<RedirectButton url={"/"}>Redirect to Login Page</RedirectButton>
 		</Card>
 	);
