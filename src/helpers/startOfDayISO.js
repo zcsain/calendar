@@ -6,7 +6,7 @@ import { DateTime } from "luxon";
  * @returns Start of day (ISO), ex. "2021-09-02T00:00:00.000+02:00"
  */
 
-const getStartOfDayISO = (date = DateTime.now()) => {
+const startOfDayISO = (date = DateTime.now()) => {
 	try {
 		if (DateTime.isDateTime(date)) {
 			return date.startOf("day").toISO();
@@ -18,4 +18,4 @@ const getStartOfDayISO = (date = DateTime.now()) => {
 	}
 };
 
-export default getStartOfDayISO;
+export default startOfDayISO;
