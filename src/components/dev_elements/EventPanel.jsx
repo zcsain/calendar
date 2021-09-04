@@ -176,6 +176,11 @@ function EventPanel({ onCreate, onDelete, onList1, position, onSignInChange }) {
 				<p>End of day: {endOfDayISO()}</p>
 				<p>Weekday: {weekdayFromISO(DateTime.now())}</p>
 				<p>Week number: {weekNumberFromISO(DateTime.now())}</p>
+				{/* {console.log(filterByViewType(eventList, 7))} */}
+				{/* {console.log(filterByViewType(longEventList, 30))} */}
+				{/* {console.log(chunkEventsByViewType(eventList, 1))} */}
+				{/* {console.log(chunkEventsByViewType(eventList, 7))} */}
+				{/* {console.log(chunkEventsByViewType(eventList, 52))} */}
 			</div>
 			<RedirectButton url={"/"}>Redirect to Login Page</RedirectButton>
 		</Card>
