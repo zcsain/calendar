@@ -14,7 +14,7 @@ function CalendarViewSelector({ setSelectedCount }) {
 	const [anchorEl, setAnchorEl] = useState(null);
 	const [selectedView, setSelectedView] = useState(1);
 	const viewNameList = ["1 day", "7 days", "30 days"];
-	const countList = [1, 7, 30];
+	const countList = [1, 7, 52];
 
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
